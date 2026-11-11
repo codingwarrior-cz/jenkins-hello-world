@@ -8,6 +8,7 @@ pipeline {
         stage("hello") {
             steps {
                 echo 'hello world'
+                echo "app win run on port ${params.APP_PORT}"
             }
         }
         
@@ -27,12 +28,7 @@ pipeline {
         
         stage("Unit test") {
             steps {
-                 script {
-                    for (int i = 0; i < 60; i++) {
-                        echo "${i + 1}"
-                        sleep 1
-                    }
-                 }
+                 sh "sleep ${params.SLEEP_TIME}"
                  sh "mvn test"
             }
         }
